@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.org.mapper.PatientMapper">
+       <insert id="add" parameterType="Patient" >
+            insert into Patient ( p_num,p_name,p_age,p_phone,p_type,p_time,p_status ) values (#{p_num},#{p_name},#{p_age},#{p_phone},#{p_type},#{p_time},#{p_status})   
+        </insert>
+         
+        <delete id="delete" parameterType="Patient" >
+            delete from Patient where p_num= #{p_num}  
+        </delete>
+         
+        <select id="get"  parameterType="Integer" resultType="Patient">
+            select * from   Patient  where p_num= #{p_num}   
+        </select>
+ 
+        <update id="update" parameterType="Patient" >
+            update Patient set p_name=#{p_name},p_age=#{p_age},p_phone=#{p_phone},p_type=#{p_type},p_time=#{p_time},p_status=#{p_status} where p_num=#{p_num}   
+        </update>
+        <select id="list" resultType="Patient">
+            select * from   Patient     
+        </select>  
+        <select id="count" resultType="Integer">
+            select count(*) from   Patient     
+        </select>  
+    </mapper>
+    
+    

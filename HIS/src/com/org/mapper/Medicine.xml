@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.org.mapper.MedicineMapper">
+       <insert id="add" parameterType="Medicine" >
+            insert into Medicine ( m_num,m_name,m_price,m_quantity,m_time ) values (#{m_num},#{m_name},#{m_price},#{m_quantity},#{m_time})   
+        </insert>
+         
+        <delete id="delete" parameterType="Medicine" >
+            delete from medicine where m_num= #{m_num}  
+        </delete>
+         
+        <select id="get"  parameterType="Integer" resultType="Medicine">
+            select * from   medicine  where m_num= #{m_num}   
+        </select>
+ 
+        <update id="update" parameterType="Medicine" >
+            update medicine set m_name=#{m_name},m_price=#{m_price},m_quantity=#{m_quantity},m_time=#{m_time} where m_num=#{m_num}   
+        </update>
+        <select id="list" resultType="Medicine">
+            select * from   medicine     
+        </select>    
+    </mapper>
+    
+    

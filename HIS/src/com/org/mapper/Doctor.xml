@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.org.mapper.DoctorMapper">
+       <insert id="add" parameterType="Doctor" >
+            insert 	into Doctor ( d_num,d_username,d_password,d_name,d_type ) values (#{d_num},#{d_username},#{d_password},#{d_name},#{d_type})   
+        </insert>
+         
+        <delete id="delete" parameterType="Doctor" >
+            delete from Doctor where d_num= #{d_num}  
+        </delete>
+         
+        <select id="get"  parameterType="Integer" resultType="Doctor">
+            select * from   Doctor  where d_num= #{d_num}   
+        </select>
+ 
+        <update id="update" parameterType="Doctor" >
+            update Doctor set d_username=#{d_username},d_password=#{d_password},d_name=#{d_name},d_type=#{d_type} where d_num=#{d_num}   
+        </update>
+        <select id="list" resultType="Doctor">
+            select * from   Doctor     
+        </select>    
+    </mapper>
+    

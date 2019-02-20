@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="com.org.mapper.RegisterMapper">
+       <insert id="add" parameterType="Register" >
+            insert into Register ( r_num,r_name,r_medicine,r_price ) values (#{r_num},#{r_name},#{r_medicine},#{r_price})   
+        </insert>
+         
+        <delete id="delete" parameterType="Register" >
+            delete from Register where r_num= #{r_num}  
+        </delete>
+         
+        <select id="get"  parameterType="Integer" resultType="Register">
+            select * from   Register  where r_num= #{r_num}   
+        </select>
+ 
+        <update id="update" parameterType="Register" >
+            update Register set r_name=#{r_name},r_medicine=#{r_medicine},r_price=#{r_price} where r_num=#{r_num}   
+        </update>
+        <select id="list" resultType="Register">
+            select * from   Register     
+        </select>    
+    </mapper>
+    
+    
