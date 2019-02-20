@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.SightMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Sight">
+    <id column="sight_id" jdbcType="INTEGER" property="sightId" />
+    <result column="sight_name" jdbcType="CHAR" property="sightName" />
+    <result column="sight_brief_infor" jdbcType="VARCHAR" property="sightBriefInfor" />
+    <result column="sight_detail_infor" jdbcType="VARCHAR" property="sightDetailInfor" />
+    <result column="sight_tel" jdbcType="CHAR" property="sightTel" />
+    <result column="sight_address" jdbcType="VARCHAR" property="sightAddress" />
+    <result column="sight_level" jdbcType="CHAR" property="sightLevel" />
+    <result column="sight_longitude" jdbcType="DOUBLE" property="sightLongitude" />
+    <result column="sight_latitude" jdbcType="DOUBLE" property="sightLatitude" />
+    <result column="sight_price" jdbcType="INTEGER" property="sightPrice" />
+    <result column="sight_score" jdbcType="DOUBLE" property="sightScore" />
+    <result column="sight_clicks" jdbcType="INTEGER" property="sightClicks" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sight
+    where sight_id = #{sightId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Sight">
+    <selectKey keyProperty="sightId" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sight (sight_id, sight_name, sight_brief_infor, 
+      sight_detail_infor, sight_tel, sight_address, 
+      sight_level, sight_longitude, sight_latitude, 
+      sight_price, sight_score, sight_clicks
+      )
+    values (#{sightId,jdbcType=INTEGER}, #{sightName,jdbcType=CHAR}, #{sightBriefInfor,jdbcType=VARCHAR}, 
+      #{sightDetailInfor,jdbcType=VARCHAR}, #{sightTel,jdbcType=CHAR}, #{sightAddress,jdbcType=VARCHAR}, 
+      #{sightLevel,jdbcType=CHAR}, #{sightLongitude,jdbcType=DOUBLE}, #{sightLatitude,jdbcType=DOUBLE}, 
+      #{sightPrice,jdbcType=INTEGER}, #{sightScore,jdbcType=DOUBLE}, #{sightClicks,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Sight">
+    update sight
+    set sight_name = #{sightName,jdbcType=CHAR},
+      sight_brief_infor = #{sightBriefInfor,jdbcType=VARCHAR},
+      sight_detail_infor = #{sightDetailInfor,jdbcType=VARCHAR},
+      sight_tel = #{sightTel,jdbcType=CHAR},
+      sight_address = #{sightAddress,jdbcType=VARCHAR},
+      sight_level = #{sightLevel,jdbcType=CHAR},
+      sight_longitude = #{sightLongitude,jdbcType=DOUBLE},
+      sight_latitude = #{sightLatitude,jdbcType=DOUBLE},
+      sight_price = #{sightPrice,jdbcType=INTEGER},
+      sight_score = #{sightScore,jdbcType=DOUBLE},
+      sight_clicks = #{sightClicks,jdbcType=INTEGER}
+    where sight_id = #{sightId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select sight_id, sight_name, sight_brief_infor, sight_detail_infor, sight_tel, sight_address, 
+    sight_level, sight_longitude, sight_latitude, sight_price, sight_score, sight_clicks
+    from sight
+    where sight_id = #{sightId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select sight_id, sight_name, sight_brief_infor, sight_detail_infor, sight_tel, sight_address, 
+    sight_level, sight_longitude, sight_latitude, sight_price, sight_score, sight_clicks
+    from sight
+  </select>
+</mapper>

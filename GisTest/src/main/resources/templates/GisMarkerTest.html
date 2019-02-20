@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>map调用js显示并标注</title>
+    <style type="text/css">
+        #allmap{width:100%;height:1000px;}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DTPndtW23KGhuSOeSoeunhBPzoTz4s9W"></script>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <!--<script src="../js/data.js"></script>-->
+</head>
+
+<body>
+<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+            type:"GET",
+            url:"http://localhost:8080/showBaidu",
+            dataType:"json",
+            success:function(data) {
+                var outdata = data.msg;
+                var map = new BMap.Map("allmap");
+                map.centerAndZoom(new BMap.Point(120.614841, 31.332454), 14);
+                map.enableScrollWheelZoom(true);
+                var opts = {
+                    width: 250,
+                    height: 80,
+                    title: "详细介绍",
+                    enableMessage: true
+                };
+                for (var i = 0; i < outdata.length; i++) {
+                    var maker = new BMap.Marker(new BMap.Point(outdata[i].baiduX, outdata[i].baiduY));
+                    var content = "景点：" + outdata[i].stationid;
+                    map.addOverlay(maker);
+                    addClickHandler(content, maker);
+                }
+
+                function addClickHandler(content, marker) {
+                    marker.addEventListener("click", function (e) {
+                            openInfo(content, e)
+                        }
+                    );
+                }
+
+                function openInfo(content, e) {
+                    var p = e.target;
+                    var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+                    var infoWindow = new BMap.InfoWindow(content, opts);
+                    map.openInfoWindow(infoWindow, point);
+                }
+            }
+            });
+
+    });
+
+</script>

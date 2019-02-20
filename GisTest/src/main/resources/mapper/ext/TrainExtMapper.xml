@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TrainMapper">
+    <resultMap id="BaseextResultMap" type="com.example.demo.entity.Train">
+        <id column="train_id" jdbcType="INTEGER" property="trainId" />
+        <result column="train_name_line" jdbcType="CHAR" property="trainNameLine" />
+        <result column="train_name" jdbcType="CHAR" property="trainName" />
+        <result column="train_infor" jdbcType="VARCHAR" property="trainInfor" />
+        <result column="train_longitude" jdbcType="DOUBLE" property="trainLongitude" />
+        <result column="train_latitude" jdbcType="DOUBLE" property="trainLatitude" />
+    </resultMap>
+    <select id="selectbyTrainNameLine" parameterType="java.lang.String" resultMap="BaseextResultMap">
+    select train_id, train_name_line, train_name, train_infor, train_longitude, train_latitude
+    from train
+    where train_name_line = #{trainNameLine,jdbcType=CHAR}
+  </select>
+    <select id="selectbyName" parameterType="java.lang.String" resultMap="BaseextResultMap">
+    select train_id, train_name_line, train_name, train_infor, train_longitude, train_latitude
+    from train
+    where train_name = #{trainName,jdbcType=CHAR}
+    </select>
+</mapper>

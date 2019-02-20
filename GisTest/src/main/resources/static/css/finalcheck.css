@@ -1,0 +1,159 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0px;
+	padding:0px;
+}
+.top{
+	width: 100%;
+	height: 25px;
+}
+.tail{
+	width:100%;
+	float: left;
+}
+.center{
+	width: 100%;
+	height: 1200px;
+	float: left;
+	margin-top: 20px;
+	border-style:solid; border-width:1px; border-color:#8E8E8E;
+}
+.center-left{
+	width: 73%;
+	height: 1180px;
+	float: left;
+	margin-top: 10px;
+	border-style:solid; border-width:1px; border-color:#8E8E8E;
+}
+.center-right{
+	width: 26%;
+	height: 1180px;
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	border-style:solid; border-width:1px; border-color:#8E8E8E;
+	position: relative;
+}
+#allmap{
+	width: 100%;
+	height: 100%;
+}
+.right-all{
+	width: 480px;
+	height: 1130px;
+	float: left;
+	margin-left: 5px;
+	border-style:solid; border-width:1px; border-color:#8E8E8E;
+}
+.day-list{
+	width: 470px;
+	height: auto;
+	margin-top: 10px;
+	margin-left: 5px;
+	
+}
+.day-list-one{
+	width: 470px; 
+	height: auto;
+	float: left;
+}
+.user{
+	width: 370px;
+	float: left;
+}
+.se{
+	width:auto;
+	height: 40px;
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+.submit{
+	float: left;
+}
+
+
+/*酒店和餐饮在图上的标注css*/
+.list-hotel-dl{
+	width: 204px;
+	height: 46px;
+	position: absolute;
+	top: 18px;
+	left: 15px;
+}
+.list-food-dl{
+	width: 204px;
+	height: 46px;
+	position: absolute;
+	top: 18px;
+	left: 15px;
+}
+.list-hotel-dt{
+	float: left;
+}
+.list-food-dt{
+	float: left;
+}
+.list-hotel-dd{
+	width: 140px;
+	float: left;
+	margin-left: 9px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.list-food-dd{
+	width: 140px;
+	float: left;
+	margin-left: 9px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.list-hotel-price{
+	text-align: right;
+	position: absolute;
+	right: 10px;
+	top:18px;
+	float: right;
+	width: 62px;
+	height: 28px;
+}
+.list-food-price{
+	text-align: right;
+	position: absolute;
+	right: 10px;
+	top:18px;
+	float: right;
+	width: 62px;
+	height: 28px;
+}
+.list-hotel-price-p{
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+.list-food-price-p{
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+}
+.list-hotel-price-p em{
+	font-style: normal;
+}
+.list-food-price-p em{
+	font-style: normal;
+}
+.list-hotel-price-p b{
+	font-weight: normal;
+}
+.list-food-price-p b{
+	font-weight: normal;
+}
+/*酒店和餐饮在图上的标注css结束点*/

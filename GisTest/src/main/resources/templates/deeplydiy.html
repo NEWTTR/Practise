@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>深度定制</title>
+    <link  rel="stylesheet" href="css/deeplydiy.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="css/nav.css" type="text/css">
+    <link rel="stylesheet" href="css/tail.css" type="text/css">
+    <script type="text/javascript" src="js/tail.js"></script>
+    <!--<script type="text/javascript" src="js/data.js"></script>-->
+    <script type="text/javascript" src="../js/GeoUtils.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link href="http://cdn.bootcss.com/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DTPndtW23KGhuSOeSoeunhBPzoTz4s9W"></script>
+    <script src="http://cdn.bootcss.com/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+</head>
+
+<body>
+<div class="top"></div>
+<!--导航栏开始-->
+<div id="menu2" class="menu">
+    <ul>
+        <li><a href="home">首 页</a></li>
+        <li><a href="touristspots">景点选择</a></li>
+        <li><a href="deeplydiy">深度DIY</a></li>
+        <li><a href="#">问题</a></li>
+    </ul>
+    <div class="cls"></div>
+</div>
+<!--导航栏结束-->
+
+<div class="center">
+    <div class="center-left">
+        <!--百度地图开始-->
+        <div id="allmap"></div>
+        <!--百度地图结束-->
+    </div>
+    <div class="center-right">
+        <!--1月22-->
+        <div class="right-left-all">
+            <div class="right-left">
+            <ul class="list-hotel">
+                <li class="list-hotel-li">
+                    <dl class="list-hotel-dl">
+                        <dt class="list-hotel-dt">
+                            <a href="" title="hahaah">
+                                <img src="images/test_01.png"></a>
+                        </dt>
+                        <dd class="list-hotel-dd">
+                            <a href="" >苏州神马旅馆ssssssssssss</a>
+                        </dd>
+                    </dl>
+                    <div class="list-hotel-price">
+                        <p class="list-hotel-price-p">
+                            <a href="">
+                                <em>￥</em>
+                                <b>99</b>
+                                起
+                            </a>
+                        </p>
+                        <!--<p class="list-hotel-score">
+                            <a href="">
+                              <span class="list-hotel-score-span">
+                                  <a href="">4.1/5分</a>
+                                  <a href="">
+                                      <em></em>
+                                      条点评
+                                  </a>
+                              </span>
+                          </a>
+                        </p>-->
+                    </div>
+                </li>
+            </ul>
+            <ul class="pagination" style="float: left; width: 250px;margin-left: 20px; height: 20px;">
+                <li><a href="javascript:" onclick="hotellist(1)">首页</a></li>
+                <li><a href="javascript:" onclick="hotellist(page-1)">上一页</a></li>
+                <span id="span-hotel"></span>
+                <li><a href="javascript:" onclick="hotellist(page+1)">下一页</a></li>
+                <li><a href="javascript:" onclick="hotellist(allPage)">尾页</a></li>
+            </ul>
+            </div>
+            <div class="right-left-bottom">
+                <div class="box">
+                    <div class="tagsinput-primary" >
+                        <input name="tagsinput"  id="tagsinputval"   class="tagsinput" data-role="tagsinput" value=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-right-all">
+            <div class="right-right">
+                <ul class="list-food">
+                    <li class="list-food-li">
+                        <dl class="list-food-dl">
+                            <dt class="list-food-dt">
+                                <a href="" title="hahaah">
+                                    <img src="images/test_01.png"></a>
+                            </dt>
+                            <dd class="list-food-dd">
+                                <a href="" >苏州神马旅馆ssssssssssss</a>
+                            </dd>
+                        </dl>
+                        <div class="list-food-price">
+                            <p class="list-food-price-p">
+                                <a href="">
+                                    <em>￥</em>
+                                    <b>99</b>
+                                    起
+                                </a>
+                            </p>
+                        </div>
+                        <div class="list-food-button">
+                            <button type="button" class="btn btn-info btn-food">添加</button>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="pagination" style="float: left; width: 250px;margin-left: 20px; height: 20px;">
+                    <li><a href="javascript:" onclick="foodlist(1)">首页</a></li>
+                    <li><a href="javascript:" onclick="foodlist(foodpage-1)">上一页</a></li>
+                    <span id="span-food"></span>
+                    <li><a href="javascript:" onclick="foodlist(foodpage+1)">下一页</a></li>
+                    <li><a href="javascript:" onclick="foodlist(foodallPage)">尾页</a></li>
+                </ul>
+            </div>
+            <div class="right-left-bottom">
+                <div class="box">
+                    <div class="tagsinput-primary" >
+                        <input name="tagsinput"  id="tagsinputval-1"   class="tagsinput" data-role="tagsinput" value=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--1月22-->
+        <button class="submit sub">确认DIY方案</button>
+    </div>
+</div>
+
+<div class="tail">
+    <!-- footer -->
+    <div class="wave-box">
+        <div class="marquee-box marquee-up" id="marquee-box">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box1">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box2">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="marquee-box" id="marquee-box3">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box4">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box5">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="auto clearfix">
+            <!-- footer主要-->
+            <div class="five-superiority"></div>
+            <div class="footer-floor1">
+                <div class="footer-list">
+                    <ul>
+                        <li class="flist-title">产品与服务</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">云解决方案</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <div class="clear-float"></div>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </div>
+        <div class="footer-floor2">
+            <p>网站信息·1997-2018 版权所有</p>
+            <p>Copyright(C)web.com, All Rights Reserved.</p>
+        </div>
+    </div>
+    <!-- footer end -->
+</div>
+</body>
+
+<!--导航栏js-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#menu2 li a").wrapInner( '<span class="out"></span>' );
+        $("#menu2 li a").each(function() {
+            $( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );});
+        $("#menu2 li a").hover(function() {
+            $(".out",	this).stop().animate({'top':	'48px'},	300); // move down - hide
+            $(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+        }, function() {
+            $(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+            $(".over",	this).stop().animate({'top':	'-48px'},	300); // move up - hide
+        });});
+</script>
+
+<!--百度地图调用js-->
+<script type="text/javascript">
+    var NameInfor = sessionStorage.Name;
+    var longgitudecenter = sessionStorage.centerLong;
+    var latitudecenter = sessionStorage.centerLat;
+    var map = new BMap.Map("allmap");
+    selectlistbyName();
+    addAllHotel();
+    addAllFood();
+
+
+    //创建已选景点和中心点到地图上
+    function selectlistbyName() {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            data :{"Names":NameInfor},
+            url: "http://localhost:8080/listbyname",
+            success: function (data) {
+                var sight = data.sight;
+                if(data.center.length != 0){
+                    var center = data.center;
+                    var Longitude = center[0].centerLongitude;
+                    longgitudecenter = center[0].centerLongitude;
+                    latitudecenter = center[0].centerLatitude;
+                    var Latitude = center[0].centerLatitude;
+                }else{
+                    var center = data.train;
+                    var Longitude = center[0].trainLongitude;
+                    longgitudecenter = center[0].trainLongitude;
+                    latitudecenter = center[0].trainLatitude;
+                    var Latitude = center[0].trainLatitude;
+                }
+                    var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25), // 指定定位位置
+                        imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移
+                    });
+                    var point = new BMap.Point(Longitude, Latitude);
+                    var marker = new BMap.Marker(new BMap.Point(Longitude, Latitude),{icon:myIcon}); // 创建点
+                    /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                    map.addOverlay(marker);  //将标注点添加到地图上
+                    var thePoint = point;
+                    var NewList = center[0];
+                    showcenterWindows(marker, thePoint, NewList);
+
+                for (var i = 0; i < sight.length; i++) {
+                    var Longitude = sight[i].sightLongitude;
+                    var Latitude = sight[i].sightLatitude;
+                    var point = new BMap.Point(Longitude, Latitude);
+                    var marker = new BMap.Marker(new BMap.Point(Longitude, Latitude)); // 创建点
+                    /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                    map.addOverlay(marker);  //将标注点添加到地图上
+                    var thePoint = point;
+                    var NewList = sight[i];
+                    showsightWindows(marker, thePoint, NewList);
+                }
+            }
+        })
+    }
+
+    //创建景点自定义窗口
+    function showsightWindows(marker,point,sight) {
+        if(sight.sightLevel != null){sightLevel = sight.sightLevel;}
+        else {sightLevel = "";}
+        var opts = {width : 450, height : 150, /*title : "<strong>景点简介：</strong><br><br>"*/}
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + sight.sightName +"    "+  sightLevel  + "</h4>" +
+            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + sight.sightId + ".jpg" +">" +
+            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + sight.sightBriefInfor + "</p>" + "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }
+
+    //创建中心点自定义窗口
+    function showcenterWindows(marker,point,list) {
+        debugger
+        var opts = {width : 450, height : 150, /*title : "<strong>景点简介：</strong><br><br>"*/}
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + (list.centerName==undefined?list.trainName:list.centerName) + "</h4>" +
+            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + list.centerId + ".jpg" +">" +
+            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + list.centerInfor + "</p>" +
+            "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }
+
+    //创建一个圆
+    var circle = new BMap.Circle(new BMap.Point(longgitudecenter,latitudecenter),1000,{fillColor:"blue", strokeWeight: 1 ,fillOpacity: 0.3, strokeOpacity: 0.3});
+    /*创建标注点并添加到地图中
+    function addMarker(points) {
+        //循环建立标注点
+        for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+            /!*var marker = new BMap.Marker(new BMap.Point(116.404, 39.915)); // 创建点*!/
+            var marker = new BMap.Marker(points[i]); //将点转化成标注点
+            map.addOverlay(marker);  //将标注点添加到地图上
+            var thePoint = points[i];
+            showInfo(marker,thePoint);
+        }
+    }*/
+    /*function showInfo(thisMarker,point) {
+        //判断点是否在
+        if(BMapLib.GeoUtils.isPointInCircle(point,circle)){
+            var opts = {
+                width : 450,
+                height : 240,
+                title : "<strong>景点简介：</strong><br><br>"
+            }
+            var sContent =
+                "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>平江路</h4>" +
+                "<img style='float:right;margin:4px' id='imgDemo' src='images/PingJiangLu.jpg' width='139' height='104' title='平江路'/>" +
+                "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>天安门坐落在中国北京市中心,故宫的南侧,与天安门广场隔长安街相望,是清朝皇城的大门...</p>" +
+                "</div>";
+            var infoWindow = new BMap.InfoWindow(sContent, opts);
+            /!*thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow*!/
+        }else
+        {
+            thisMarker.remove();
+            /!*var infoWindow = new BMap.InfoWindow("不在圆形区域内");
+             thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow*!/
+        }
+        thisMarker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }*/
+
+
+
+    //添加所有hotel到地图里
+    function addAllHotel() {
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8080/listhotel",
+            dataType: "json",
+            success: function (data) {
+                var hotel = data.hotellist;
+                for(var i=0, pointsLen = hotel.length; i<pointsLen; i++) {
+                    var myIcon = new BMap.Icon("images/hotelmarker.png", new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25), // 指定定位位置
+                    });
+                    var point = new BMap.Point(hotel[i].hotelLongitude,hotel[i].hotelLatitude) ;
+                    var marker = new BMap.Marker(new BMap.Point(hotel[i].hotelLongitude, hotel[i].hotelLatitude),{icon:myIcon}); // 创建点
+                    /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                    map.addOverlay(marker);  //将标注点添加到地图上
+                    var thePoint = point;
+                    var hotellist = hotel[i];
+                    showWindows(marker,thePoint,hotellist);
+                }
+            }
+        })};
+
+    //创建hotel在地图上自定义窗口
+    function showWindows(marker,point,hotellist) {
+        var opts = {
+            width : 275,
+            height : 52,
+            /*title : "<strong>景点简介：</strong><br><br>"*/
+        }
+        var sContent =
+            "<dl class='list-hotel-dl'>" + "<dt class='list-hotel-dt'>" +
+            "<img src="+"images/imagesbyHotelId/" + hotellist.hotelId + ".png" +">" + "</dt>" +
+            "<dd class='list-hotel-dd'>" +  hotellist.hotelName +  "</dd>" + "</dl>" +
+            "<div class='list-hotel-price'>" + "<p class='list-hotel-price-p' style='color:#f55'>" +
+            "<em>￥</em>" + "<b>" + hotellist.hotelPrice + "</b>" + "起" +  "</p>" + "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("mouseover",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+        marker.addEventListener("click",function () {
+            window.open("http://www.cnblogs.com");
+        });
+        marker.addEventListener("mouseout",function () {
+            map.closeInfoWindow(infoWindow, point);
+        });
+    }
+
+    //添加所有food到地图里
+    function addAllFood() {
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8080/listfood",
+            dataType: "json",
+            success: function (data) {
+                var food = data.foodlist;
+                for(var i=0, pointsLen = food.length; i<pointsLen; i++) {
+                    var myIcon = new BMap.Icon("images/foodmarker.png", new BMap.Size(23, 25), {
+                        offset: new BMap.Size(10, 25), // 指定定位位置
+                    });
+                    var point = new BMap.Point(food[i].foodLongitude,food[i].foodLatitude) ;
+                    var marker = new BMap.Marker(new BMap.Point(food[i].foodLongitude, food[i].foodLatitude),{icon:myIcon}); // 创建点
+                    /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                    map.addOverlay(marker);  //将标注点添加到地图上
+                    var thePoint = point;
+                    var foodlist = food[i];
+                    showFoodWindows(marker,thePoint,foodlist);
+                }
+            }
+        })};
+
+    //创建food在地图上自定义窗口
+    function showFoodWindows(marker,point,foodlist) {
+        var opts = {width : 275, height : 52,}
+        var sContent =
+            "<dl class='list-food-dl'>" + "<dt class='list-food-dt'>" +
+            "<img src="+"images/imagesbyHotelId/" + foodlist.foodId + ".png" +">" + "</dt>" +
+            "<dd class='list-food-dd'>" +  foodlist.foodName +  "</dd>" + "</dl>" +
+            "<div class='list-food-price'>" + "<p class='list-food-price-p' style='color:#f55'>" +
+            "<em>￥</em>" + "<b>" + foodlist.foodPrice + "</b>" + "/人" +  "</p>" + "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("mouseover",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+        marker.addEventListener("click",function () {
+            window.open("http://www.cnblogs.com");
+        });
+        marker.addEventListener("mouseout",function () {
+            map.closeInfoWindow(infoWindow, point);
+        });
+    }
+
+    //分页功能
+    var page = 1;   //分页功能当前页码
+    var allPage = 1;  //分页功能总页码
+
+    //酒店列表显示
+    function hotellist(p) {
+        // 判断传入页数大于等于1且小于等于总页数
+        if (p >= 1 && p <= allPage) {
+            // 将传入页赋值给当前页
+            page = p;
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8080/pagehotel?pageNum=" + p ,
+                dataType: "json",
+                success: function (data) {
+                    var hotellist = data.pageInfo.list;
+                    $(".list-hotel li").remove(); // 删除class=“list-hotel”标签的字标签li下所有内容
+                    allPage = data.pageInfo.pages; // 给总页数赋值
+                    $("#span-hotel").val("/");  //添加 当前页数/总页数 形式显示
+
+                    //展示酒店列表
+                    for(var i = 0;i < data.pageInfo.list.length;i++){
+                        var hotel = data.pageInfo.list[i];
+                        var point = new BMap.Point(hotel.hotelLongitude,hotel.hotelLatitude) ;
+                        /*if(BMapLib.GeoUtils.isPointInCircle(point,circle)) {*/
+                            var form = "<li class='list-hotel-li' data-id="+ hotel.hotelName +">" +
+                                "<dl class='list-hotel-dl'>" + "<dt class='list-hotel-dt'>" +
+                                "<a href='' title= " + hotel.hotelName + ">" + "<img src="+"images/imagesbyHotelId/" + hotel.hotelId + ".png" +">" + "</a>" + "</dt>" +
+                                "<dd class='list-hotel-dd'>" + "<a href=''>" + hotel.hotelName + "</a>" + "</dd>" + "</dl>" +
+                                "<div class='list-hotel-price'>" + "<p class='list-hotel-price-p'>" + "<a href=''>" +
+                                "<em>￥</em>" + "<b>" + hotel.hotelPrice + "</b>" + "起" + "</a>" + "</p>" + "</div>" +
+                                "<div class='list-hotel-button'>" + "<button type='button'  class='btn btn-info btn-hotel'  data-id="+ hotel.hotelName +">" + "添加" + "</button>"  + "</div>" +"</li>";
+                            $(".list-hotel").append(form);
+                        /*}*/
+                    }
+
+                    //选中的酒店添加进tags里
+                    $('.list-hotel-li button').bind({
+                        'click':function(){
+                            var hotelName = $(this).data("id");
+                            $("#tagsinputval").tagsinput('add',hotelName);
+                        }
+                    })
+
+                    //鼠标滑过li地图产生相应效果
+                    $('.list-hotel li').bind({
+                        'mouseover' : function(){
+                            var hotelname = $(this).data("id");
+                            for(var i = 0;i < data.pageInfo.list.length;i++){
+                                var hotel = data.pageInfo.list[i];
+                                if(hotelname == hotel.hotelName){
+                                    var hotelLongitude = hotel.hotelLongitude;
+                                    var hotelLatitude = hotel.hotelLatitude;
+                                    var hotelPrice = hotel.hotelPrice;
+                                    var hotelId = hotel.hotelId;
+                                }
+                            }
+                            var point = new BMap.Point(hotelLongitude,hotelLatitude) ;
+                            var opts = {width : 275, height : 52, /*title : "<strong>景点简介：</strong><br><br>"*/ }
+                            var sContent =
+                                "<dl class='list-hotel-dl'>" + "<dt class='list-hotel-dt'>" +
+                                "<img src="+"images/imagesbyHotelId/" + hotelId + ".png" +">" + "</dt>" +
+                                "<dd class='list-hotel-dd'>" +  hotelname +  "</dd>" + "</dl>" +
+                                "<div class='list-hotel-price'>" + "<p class='list-hotel-price-p' style='color:#f55'>" +
+                                "<em>￥</em>" + "<b>" + hotelPrice + "</b>" + "起" +  "</p>" + "</div>";
+                            var infoWindow = new BMap.InfoWindow(sContent, opts);
+                            map.openInfoWindow(infoWindow, point);
+                        },
+                        'mouseout' : function(){
+                            map.closeInfoWindow();
+                        }
+                    });
+
+
+                    //循环标注的方法
+                    /*function addMarker(hotellist) {
+                        //循环建立标注点
+                        for(var i=0, pointsLen = hotellist.length; i<pointsLen; i++) {
+                            var point = new BMap.Point(hotellist[i].hotelLongitude,hotellist[i].hotelLatitude) ;
+                            var marker = new BMap.Marker(new BMap.Point(hotellist[i].hotelLongitude, hotellist[i].hotelLatitude)); // 创建点
+                            /!*var marker = new BMap.Marker(points[i]); //将点转化成标注点*!/
+                            map.addOverlay(marker);  //将标注点添加到地图上
+                            var thePoint = point;
+                            var hotel_name = hotellist[i].hotelName;
+                            showInfo(marker,thePoint,hotel_name);
+                        }
+                    }*/
+
+                    //创建自定义窗口方法2
+                    /*function showInfo(thisMarker,point,hotel_name) {
+                        //判断点是否在
+                        if(BMapLib.GeoUtils.isPointInCircle(point,circle)){
+                            var opts = {
+                                width : 450,
+                                height : 240,
+                                title : "<strong>景点简介：</strong><br><br>"
+                            }
+                            var sContent =
+                                "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>"+ hotel_name +"</h4>" +
+                                "<img style='float:right;margin:4px' id='imgDemo' src='images/PingJiangLu.jpg' width='139' height='104' title='平江路'/>" +
+                                "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>天安门坐落在中国北京市中心,故宫的南侧,与天安门广场隔长安街相望,是清朝皇城的大门...</p>" +
+                                "</div>";
+                            var infoWindow = new BMap.InfoWindow(sContent, opts);
+                            /!*thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow*!/
+                        }else
+                        {
+                            thisMarker.remove();
+                            /!*var infoWindow = new BMap.InfoWindow("不在圆形区域内");
+                            thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow*!/
+                        }
+                        thisMarker.addEventListener("mouseover",function () {
+                            map.openInfoWindow(infoWindow, point);
+                        });
+                        thisMarker.addEventListener("click",function () {
+                            window.open("http://www.cnblogs.com");
+                        });
+                        thisMarker.addEventListener("mouseout",function () {
+                            map.closeInfoWindow(infoWindow, point);
+                        });
+                        //给列表里的li添加mouseover事件
+                        $(".list-hotel-li").mouseover(function () {
+                            map.openInfoWindow(infoWindow, point);
+                        });
+                        //给列表里的li添加mouseout事件
+                        $(".list-hotel-li").mouseout(function () {
+                            map.closeInfoWindow(infoWindow, point);
+                        });
+                    }*/
+
+                    /*function initialize() {
+                        // 百度地图API功能
+                        map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+                        map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+                        map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+                        map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+                        map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+                        var point = new BMap.Point(longgitudecenter,latitudecenter);    // 创建点坐标
+                        map.centerAndZoom(point,14);                      // 初始化地图,设置中心点坐标和地图级别。
+                        map.addOverlay(circle);
+                    }
+                    initialize();*/
+                }
+            });
+        }
+    }
+
+    //初始化第一页列表
+    hotellist(1);
+
+    //分页功能
+    var foodpage = 1;   //分页功能当前页码
+    var foodallPage = 1;  //分页功能总页码
+
+    //餐饮列表显示
+    function foodlist(p) {
+        // 判断传入页数大于等于1且小于等于总页数
+        if (p >= 1 && p <= foodallPage) {
+            // 将传入页赋值给当前页
+            foodpage = p;
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8080/pagefood?pageNum=" + p,
+                dataType: "json",
+                success: function (data) {
+                    var foodlist = data.foodpageInfo.list;
+                    $(".list-food li").remove(); // 删除class=“list-hotel”标签的字标签li下所有内容
+                    foodallPage = data.foodpageInfo.pages; // 给总页数赋值
+                    $("#span-food").val("/");  //添加 当前页数/总页数 形式显示
+
+                    //展示餐饮列表
+                    for (var i = 0; i < data.foodpageInfo.list.length; i++) {
+                        var food = data.foodpageInfo.list[i];
+                        var point = new BMap.Point(food.foodLongitude, food.foodLatitude);
+                        /*if (BMapLib.GeoUtils.isPointInCircle(point, circle)) {*/
+                            var form = "<li class='list-food-li' data-id=" + food.foodName + ">" +
+                                "<dl class='list-food-dl'>" + "<dt class='list-food-dt'>" +
+                                "<a href='' title= " + food.foodName + ">" + "<img src=" + "images/imagesbyHotelId/" + food.foodId + ".png" + ">" + "</a>" + "</dt>" +
+                                "<dd class='list-food-dd'>" + "<a href=''>" + food.foodName + "</a>" + "</dd>" + "</dl>" +
+                                "<div class='list-food-price'>" + "<p class='list-food-price-p'>" + "<a href=''>" +
+                                "<em>￥</em>" + "<b>" + food.foodPrice + "</b>" + "/人" + "</a>" + "</p>" + "</div>" +
+                                "<div class='list-food-button'>" + "<button type='button'  class='btn btn-info btn-food'  data-id=" + food.foodName + ">" + "添加" + "</button>" + "</div>" + "</li>";
+                            $(".list-food").append(form);
+                       /* }*/
+                    }
+
+                    //选中的餐饮添加进tags里
+                    $('.list-food-li button').bind({
+                        'click': function () {
+                            var foodName = $(this).data("id");
+                            $("#tagsinputval-1").tagsinput('add', foodName);
+                        }
+                    })
+
+                    //鼠标滑过li地图产生相应效果
+                    $('.list-food li').bind({
+                        'mouseover': function () {
+                            var foodname = $(this).data("id");
+                            for (var i = 0; i < data.foodpageInfo.list.length; i++) {
+                                var food = data.foodpageInfo.list[i];
+                                if (foodname == food.foodName) {
+                                    var foodLongitude = food.foodLongitude;
+                                    var foodLatitude = food.foodLatitude;
+                                    var foodPrice = food.foodPrice;
+                                    var foodId = food.foodId;
+                                }
+                            }
+                            var point = new BMap.Point(foodLongitude, foodLatitude);
+                            var opts = {width: 275, height: 52, /*title : "<strong>景点简介：</strong><br><br>"*/}
+                            var sContent =
+                                "<dl class='list-food-dl'>" + "<dt class='list-food-dt'>" +
+                                "<img src=" + "images/imagesbyHotelId/" + foodId + ".png" + ">" + "</dt>" +
+                                "<dd class='list-food-dd'>" + foodname + "</dd>" + "</dl>" +
+                                "<div class='list-food-price'>" + "<p class='list-food-price-p' style='color:#f55'>" +
+                                "<em>￥</em>" + "<b>" + foodPrice + "</b>" + "/人" + "</p>" + "</div>";
+                            var infoWindow = new BMap.InfoWindow(sContent, opts);
+                            map.openInfoWindow(infoWindow, point);
+                        },
+                        'mouseout': function () {
+                            map.closeInfoWindow();
+                        }
+                    })
+                }
+            })
+        }
+    }
+    //初始化第一页列表
+    foodlist(1);
+
+    function initialize() {
+        // 百度地图API功能
+        map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+        map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+        map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+        map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+        map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+        var point = new BMap.Point(longgitudecenter,latitudecenter);    // 创建点坐标
+        map.centerAndZoom(point,14);                      // 初始化地图,设置中心点坐标和地图级别。
+        map.addOverlay(circle);
+    }
+    initialize();
+
+
+</script>
+<!--百度地图调用js end-->
+
+<!--提交信息到下一个页面-->
+<script>
+    var HotelNameInfor = [];
+    var FoodNameInfor = [];
+    $(".sub").click(function () {
+        var hotelName = $("#tagsinputval").val();
+        var foodName = $("#tagsinputval-1").val();
+        var hotelNamelist = hotelName.split(",");
+        var foodNamelist = foodName.split(",");
+        for(var i = 0; i < hotelNamelist.length; i++){
+            HotelNameInfor[i] = hotelNamelist[i];
+        }
+        for(var i = 0; i < foodNamelist.length; i++){
+            FoodNameInfor[i] = foodNamelist[i];
+        }
+        sessionStorage.HotelName = HotelNameInfor;
+        sessionStorage.FoodName = FoodNameInfor;
+        window.location.href = "finalcheck";
+    })
+</script>
+
+</html>

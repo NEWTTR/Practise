@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>旅游景点</title>
+    <link rel="stylesheet" href="css/touristspots.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/nav.css" type="text/css">
+    <link rel="stylesheet" href="css/tail.css" type="text/css">
+    <link href="http://cdn.bootcss.com/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">-->
+    <script type="text/javascript" src="js/tail.js"></script>
+<!--    <script type="text/javascript" src="js/data.js"></script>-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DTPndtW23KGhuSOeSoeunhBPzoTz4s9W"></script>
+    <script type="text/javascript" src="js/jquery.baiduMap.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+</head>
+
+<body>
+
+<div class="top">
+    <ul>
+        <a href=""><li>登录</li></a>
+        <li>|</li>
+        <a href=""><li>注册</li></a>
+    </ul>
+</div>
+<!--导航栏开始-->
+<div id="menu2" class="menu">
+    <ul>
+        <li><a href="home">首 页</a></li>
+        <li><a href="touristspots">景点选择</a></li>
+        <li><a href="deeplydiy">深度DIY</a></li>
+        <li><a href="#">问题</a></li>
+    </ul>
+    <div class="cls"></div>
+</div>
+<!--导航栏结束-->
+
+<div class="container">
+    <div class="c-left">
+        <!--热门景区存放(多选)-->
+        <div class="left-top">
+            <p style="width: 240px; margin-bottom: 0; padding: 0;">热门景点</p>
+            <div class="RadioStyle sightradio">
+                <!--<input type="radio" name="Storag" id="c1" value="平江路" onclick="theLocation()" />
+                <label for="c1">平江路</label>
+                <input type="radio" name="Storag" id="c2" value="虎丘" onclick="theLocation()"/>
+                <label for="c2">虎丘</label>-->
+                <input id="longitude" type="text"   />
+                <input id="latitude" type="text"  />
+            </div>
+        </div>
+        <!--热门景区存放(多选)结束-->
+
+        <!--周边搜索中心点选择(单选)\-->
+        <div class="left-middle">
+            <p style="width: 240px;">周边搜索的中心点选择</p>
+            <p style="width: 240px; margin: 0;margin-bottom: -10px;padding: 0; font-size: 17px;">热门景点周边</p>
+            <div class="RadioStyle sightcenterradio">
+                <!--<input type="radio" name="Storage" id="r1" value="平江路" onclick="centerchoose()" />
+                <label for="r1">平江路</label>
+                <input type="radio" name="Storage" id="r2" value="虎丘" onclick="centerchoose()" />
+                <label for="r2">虎丘</label>
+                <input type="radio" name="Storage" id="r3" value="留园" onclick="centerchoose()" />
+                <label for="r3">留园</label>
+                <input type="radio" name="Storage" id="r4" value="拙政园" onclick="centerchoose()" />
+                <label for="r4">拙政园</label>
+                <input type="radio" name="Storage" id="r11" value="拙政园1" onclick="centerchoose()" />
+                <label for="r11">拙政园1</label>
+                <input type="radio" name="Storage" id="r12" value="拙政园2" onclick="centerchoose()" />
+                <label for="r12">拙政园2</label>-->
+            </div>
+            <p style="width: 240px; margin-top: 10px; margin-bottom: -10px; padding: 0; font-size: 17px;">热门商圈周边</p>
+            <div class="RadioStyle mallcenterradio">
+                <!--<input type="radio" name="Storage" id="r5" value="1号线" onclick="centerchoose()" />
+                <label for="r5">观前街</label>
+                <input type="radio" name="Storage" id="r7" value="3号线" onclick="centerchoose()" />
+                <label for="r7">金鸡湖</label>
+                <input type="radio" name="Storage" id="r8" value="4号线" onclick="centerchoose()" />
+                <label for="r8">独墅湖</label>
+                <input type="radio" name="Storage" id="r13" value="2号线" onclick="centerchoose()" />
+                <label for="r6">石路</label>
+                <input type="radio" name="Storage" id="r14" value="2号线" onclick="centerchoose()" />
+                <label for="r6">狮山路</label>
+                <input type="radio" name="Storage" id="r6" value="2号线" onclick="centerchoose()" />
+                <label for="r6">圆融</label>-->
+            </div>
+            <p style="width: 240px; margin-top: 10px; margin-bottom: -10px; padding: 0; font-size: 17px;">临近地铁周边</p>
+            <div class="RadioStyle railwaycenterradio">
+                <!--<input type="radio" name="Storage" id="r9" value="几何中心" onclick="centerchoose()"  />
+                <label for="r9">几何中心</label>
+                <input type="radio" name="Storage" id="r10" value="几何中心1" onclick="centerchoose()" />
+                <label for="r10">几何中心1</label>-->
+            </div>
+        </div>
+        <!--周边搜索中心点选择(单选)结束-->
+
+    </div>
+
+
+    <div class="c-center">
+        <!--百度地图开始-->
+        <div id="allmap"></div>
+        <!--百度地图结束-->
+
+        <!--搜索框开始-->
+        <form  id="search_box">
+            <div class="wrapper" >
+                <input type="text" id="search" name="search" placeholder="景点搜索" autocomplete="off" />
+                <button type="submit" class="search_btn"><img src="images/search_icon.png" title="Search" /></button>
+            </div>
+        </form>
+        <!--搜索框结束-->
+
+        <!--景点和中心点标签框-->
+        <div class="confirm-box">
+            <p style="float: left">景点: </p>
+            <div class="box">
+                <div class="tagsinput-primary" >
+                    <input name="tagsinput"  id="tagsinputval"   class="tagsinput" data-role="tagsinput" value=""/>
+                </div>
+            </div>
+            <p style="float: left; margin-left: -135px;">中心点: </p>
+            <div class="box-1">
+                <div class="tagsinput-primary" >
+                    <input name="tagsinput"  id="tagsinputval-1"   class="tagsinput" data-role="tagsinput" value=""/>
+                </div>
+            </div>
+        </div>
+        <!--景点和中心点标签框结束-->
+
+        <!--确认框开始-->
+        <div class="sub">
+            <button class="button button--wayra button--border-thick button--text-upper button--size-s" style="width: 140px; margin-right: -2px; float: right; margin-top: 10px;" id="subinfor">确认选择</button></a>
+        </div>
+        <!--确认框结束-->
+
+        <div class="center-tail">
+            景区介绍
+        </div>
+    </div>
+
+
+    <div class="c-right">
+        <div class="right-box">
+            <a href="#"><img src="images/tour1.jpg" alt="曼谷-芭</a>提雅6日游"></a>
+            <figcaption><strong class="title">&lt;曼谷-芭提雅6日游&gt;</strong>包团特惠，超丰富景点</figcaption>
+            <div>
+                <span class="price">¥ <strong>2865</strong> 起</span>
+            </div>
+        </div>
+        <div class="right-box">
+            <a href="#"><img src="images/tour1.jpg" alt="曼谷-芭</a>提雅6日游"></a>
+            <figcaption><strong class="title">&lt;曼谷-芭提雅6日游&gt;</strong>包团特惠，超丰富景点</figcaption>
+            <div>
+                <span class="price">¥ <strong>2865</strong> 起</span>
+            </div>
+        </div>
+        <div class="right-box">
+            <a href="#"><img src="images/tour1.jpg" alt="曼谷-芭</a>提雅6日游"></a>
+            <figcaption><strong class="title">&lt;曼谷-芭提雅6日游&gt;</strong>包团特惠，超丰富景点</figcaption>
+            <div>
+                <span class="price">¥ <strong>2865</strong> 起</span>
+            </div>
+        </div>
+        <div class="right-box">
+            <a href="#"><img src="images/tour1.jpg" alt="曼谷-芭</a>提雅6日游"></a>
+            <figcaption><strong class="title">&lt;曼谷-芭提雅6日游&gt;</strong>包团特惠，超丰富景点</figcaption>
+            <div>
+                <span class="price">¥ <strong>2865</strong> 起</span>
+            </div>
+        </div>
+        <div class="right-box">
+            <a href="#"><img src="images/tour1.jpg" alt="曼谷-芭</a>提雅6日游"></a>
+            <figcaption><strong class="title">&lt;曼谷-芭提雅6日游&gt;</strong>包团特惠，超丰富景点</figcaption>
+            <div>
+                <span class="price">¥ <strong>2865</strong> 起</span>
+            </div>
+        </div>
+        <div class="right-box">
+            <a href="#"><img src="images/tour1.jpg" alt="曼谷-芭</a>提雅6日游"></a>
+            <figcaption><strong class="title">&lt;曼谷-芭提雅6日游&gt;</strong>包团特惠，超丰富景点</figcaption>
+            <div>
+                <span class="price">¥ <strong>2865</strong> 起</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="tail">
+    <!-- footer -->
+    <div class="wave-box">
+        <div class="marquee-box marquee-up" id="marquee-box">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box1">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box2">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="marquee-box" id="marquee-box3">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box4">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box5">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="auto clearfix">
+            <!-- footer主要-->
+            <div class="five-superiority"></div>
+            <div class="footer-floor1">
+                <div class="footer-list">
+                    <ul>
+                        <li class="flist-title">产品与服务</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">云解决方案</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <div class="clear-float"></div>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </div>
+        <div class="footer-floor2">
+            <p>网站信息·1997-2018 版权所有</p>
+            <p>Copyright(C)web.com, All Rights Reserved.</p>
+        </div>
+    </div>
+    <!-- footer end -->
+</div>
+</body>
+
+<!--导航栏控制 -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#menu2 li a").wrapInner( '<span class="out"></span>' );
+        $("#menu2 li a").each(function() {
+            $( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );});
+        $("#menu2 li a").hover(function() {
+            $(".out",	this).stop().animate({'top':	'48px'},	300); // move down - hide
+            $(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+        }, function() {
+            $(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+            $(".over",	this).stop().animate({'top':	'-48px'},	300); // move up - hide
+        });});
+</script>
+
+
+<!--搜索框js实现-->
+<script type="text/javascript">
+    $(".search_btn").click(function () {
+        var searchname = $("#search").val();
+        $.ajax({
+            type: "post",
+            url : "http://localhost:8080/sightsearch?searchname=" + searchname,
+            dataType : "json",
+            async: false,
+            success: function (data) {
+                var sightlist = data.sightlist;
+                for (var i = 0, pointsLen = sightlist.length; i < pointsLen; i++) {
+                    if(sightlist[i].sightLevel != null){sightLevel = sightlist[i].sightLevel;}
+                    else {sightLevel = "";}
+                    if(sightlist[i].sightName != null){sightName = sightlist[i].sightName;}
+                    else {sightName = "";}
+                    var point = new BMap.Point(sightlist[i].sightLongitude, sightlist[i].sightLatitude);
+                    var opts = {
+                        width: 450,
+                        height: 150,
+                        /*title : "<strong>景点简介：</strong><br><br>"*/
+                    }
+                    var sContent =
+                        "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + sightName + "    " + sightLevel + "</h4>" +
+                        "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src=" + "images/imagesbySightId/" + sightlist[i].sightId + ".jpg" + ">" +
+                        "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + sightlist[i].sightBriefInfor + "</p>" +
+                        "<input onclick='add()' type='button' id='btn1' value='添加' data-id='" +sightlist[i].sightName+ "' style='width: 100px;height:30px;margin-top: 40px;margin-left: 120px;'>" +
+                        "</div>";
+                    var infoWindow = new BMap.InfoWindow(sContent, opts);
+                    map.openInfoWindow(infoWindow, point);
+                    var formsight = "<p>" + sightlist[i].sightDetailInfor + "</p>";
+                    $(".center-tail").html("");
+                    $(".center-tail").append(formsight);
+                }
+            }
+        })
+        return false;
+    })
+</script>
+
+<!--百度地图调用js-->
+<script type="text/javascript">
+    var map = new BMap.Map("allmap");
+    sightlist();
+    sightlistAll();
+    centerlist();
+
+    //标注全部景点在地图上
+    //添加所有sight到地图里 //创建map集合
+    function sightlistAll() {
+        $.ajax({
+            type: "post",
+            url: "http://localhost:8080/listsight",
+            dataType: "json",
+            success: function (data) {
+                var sight = data.sightlist;
+                for(var i=0, pointsLen = sight.length; i<pointsLen; i++) {
+                    var point = new BMap.Point(sight[i].sightLongitude,sight[i].sightLatitude) ;
+                    var marker = new BMap.Marker(new BMap.Point(sight[i].sightLongitude, sight[i].sightLatitude)); // 创建点
+                    /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                    map.addOverlay(marker);  //将标注点添加到地图上
+                    var thePoint = point;
+                    var sightlist = sight[i];
+                    showWindows(marker,thePoint,sightlist);
+                }
+            }
+        })};
+
+
+    //创建自定义窗口
+    function showWindows(marker,point,sightlist) {
+        if(sightlist.sightLevel != null){sightLevel = sightlist.sightLevel;}
+        else {sightLevel = "";}
+        var opts = {
+            width : 450,
+            height : 150,
+            /*title : "<strong>景点简介：</strong><br><br>"*/
+        }
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + sightlist.sightName +"    "+  sightLevel  + "</h4>" +
+            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + sightlist.sightId + ".jpg" +">" +
+            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + sightlist.sightBriefInfor + "</p>" +
+            "<input onclick='add()' type='button' id='btn1' value='添加' data-id='" + sightlist.sightName + "' style='width: 100px;height:30px;margin-top: 40px;margin-left: 120px;'>" +
+            "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }
+
+    //热门景点中的展示以及对应到地图上的展示
+    function sightlist(){
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8080/listsightbysightClicks",
+                dataType: "json",
+                success: function (data) {
+                    var sightlist = data.sightlist;
+                    for(var i = 0 ; i < 9 ; i++){
+                        var form = '<input type="radio" ' +
+                                    'name="sight" id='+ "sight" + sightlist[i].sightId + '>' +
+                                    '<label for='+ "sight" + sightlist[i].sightId + '>' + sightlist[i].sightName + '</label>';
+                        $(".sightradio").append(form);
+                        $("#"+"sight" + sightlist[i].sightId ).val(sightlist[i].sightName);
+                        /*var x = $("#"+"sight" + sightlist[i].sightId ).val();
+                        alert(x);*/
+                    }
+
+                    $('input:radio[name="sight"]').click(function () {
+                        var sightname = $(this).val();
+                        for(var i =0 ; i < 10 ; i++){
+                            var sight = sightlist;
+                            if(sightname == sight[i].sightName){
+                                var sightLongitude = sight[i].sightLongitude;
+                                var sightLatitude = sight[i].sightLatitude;
+                                var sightBriefInfor = sight[i].sightBriefInfor;
+                                var sightDetailInfor = sight[i].sightDetailInfor;
+                                var sightId = sight[i].sightId;
+                                if(sight[i].sightLevel != null){
+                                    var sightLevel = sight[i].sightLevel +"星级";
+                                }
+                                else {
+                                    var sightLevel = "";
+                                }
+                            }
+                        }
+                        var point = new BMap.Point(sightLongitude,sightLatitude) ;
+                        var opts = {
+                            width : 450,
+                            height : 150,
+                            /*title : "<strong>景点简介：</strong><br><br>"*/
+                        }
+                        var sContent =
+                            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + sightname +"    "+  sightLevel  + "</h4>" +
+                            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + sightId + ".jpg" +">" +
+                            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + sightBriefInfor + "</p>" +
+                            "<input onclick='add()' type='button' id='btn1' value='添加' data-id='" + sightname + "' style='width: 100px;height:30px;margin-top: 40px;margin-left: 120px;'>" +
+                            "</div>";
+                        var infoWindow = new BMap.InfoWindow(sContent, opts);
+                        map.openInfoWindow(infoWindow, point);
+                        var formsight = "<p>" + sightDetailInfor + "</p>";
+                        $(".center-tail").html("");
+                        $(".center-tail").append(formsight);
+
+                    })
+
+                    function initialize() {
+                        // 百度地图API功能
+                        map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+                        map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+                        map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+                        map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+                       /* map.addControl(new BMap.MapTypeControl());  */        //添加地图类型控件
+                        map.centerAndZoom(new BMap.Point(120.614841,31.332454),14);
+                        map.enableScrollWheelZoom(true);
+                        // 初始化地图,设置中心点坐标和地图级别。
+                    }
+                    initialize();
+
+                }
+            })
+    }
+
+
+    //创建center自定义窗口
+    function showcenterWindows(marker,point,center) {
+        var opts = {
+            width : 450,
+            height : 150,
+            /*title : "<strong>景点简介：</strong><br><br>"*/
+        }
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + center.centerName + "</h4>" +
+            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + center.centerId + ".jpg" +">" +
+            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + center.centerInfor + "</p>" +
+            "<input onclick='addcenter()' type='button' id='btn2' value='添加' data-id='" + center.centerName + "' style='width: 100px;height:30px;margin-top: 20px;margin-left: 120px;'>" +
+            "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }
+
+    //中心点列表展示以及对应到地图上的展示
+    function centerlist() {
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "http://localhost:8080/listcenter",
+            success:function (data) {
+                var centerlist = data.centerlist;
+                for(var i = 0; i < centerlist.length; i++){
+                    if(centerlist[i].centerLongitude !== null){
+                        var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+                            offset: new BMap.Size(10, 25), // 指定定位位置
+                            imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移
+                        });
+                        var marker = new BMap.Marker((new BMap.Point(centerlist[i].centerLongitude, centerlist[i].centerLatitude)),{icon:myIcon}); // 创建点
+                        var point = new BMap.Point(centerlist[i].centerLongitude,centerlist[i].centerLatitude) ;
+                        /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                        map.addOverlay(marker);  //将标注点添加到地图上
+                        var thePoint = point;
+                        var center = centerlist[i];
+                        showcenterWindows(marker,thePoint,center);
+                    }
+                    var form = '<input type="radio" ' +
+                        'name="center" id='+ "center" + centerlist[i].centerId + '>' +
+                        '<label for='+ "center" + centerlist[i].centerId + '>' + centerlist[i].centerName + '</label>';
+                    if(centerlist[i].centerType == "景点"){
+                        $(".sightcenterradio").append(form);
+                        $("#"+"center" + centerlist[i].centerId ).val(centerlist[i].centerName);
+                    }
+                    if(centerlist[i].centerType == "商圈"){
+                        $(".mallcenterradio").append(form);
+                        $("#"+"center" + centerlist[i].centerId ).val(centerlist[i].centerName);
+                    }
+                    if(centerlist[i].centerType == "地铁"){
+                        $(".railwaycenterradio").append(form);
+                        $("#"+"center" + centerlist[i].centerId ).val(centerlist[i].centerName);
+                    }
+                }
+
+                $('input:radio[name="center"]').click(function () {
+                    var centername = $(this).val();
+                    for(var i =0 ; i < centerlist.length ; i++){
+                        var center = centerlist;
+                        if(centername == center[i].centerName){
+                            if(center[i].centerType == "地铁"){
+                                $.ajax({
+                                    type: "post",
+                                    dataType: "json",
+                                    url:"http://localhost:8080/selecttrainbynameline?TrainNameLine=" + centername,
+                                    success:function (data) {
+                                        var train = data.train;
+                                        debugger
+                                        for(var j = 0; j < train.length; j++){
+                                            var myIcon = new BMap.Icon("images/trainmarker.png", new BMap.Size(23, 25), {
+                                                offset: new BMap.Size(10, 25), // 指定定位位置
+                                            });
+                                            var marker = new BMap.Marker((new BMap.Point(train[j].trainLongitude, train[j].trainLatitude)),{icon:myIcon}); // 创建点
+                                            var point = new BMap.Point(train[j].trainLongitude,train[j].trainLatitude) ;
+                                            map.addOverlay(marker);  //将标注点添加到地图上
+                                            var trainlist = train[j];
+                                            showtrainWindows(marker,point,trainlist)
+                                        }
+                                    }
+                                })
+                                return;
+                            }
+                            var centerLongitude = center[i].centerLongitude;
+                            var centerLatitude = center[i].centerLatitude;
+                            var centerInfor = center[i].centerInfor;
+                            var centerId = center[i].centerId;
+                        }
+                    }
+                    var point = new BMap.Point(centerLongitude,centerLatitude) ;
+                    var opts = {
+                        width : 450,
+                        height : 150,
+                        /*title : "<strong>景点简介：</strong><br><br>"*/
+                    }
+                    var sContent =
+                        "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + centername + "</h4>" +
+                        "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + centerId + ".jpg" +">" +
+                        "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + centerInfor + "</p>" +
+                        "<input onclick='addcenter()' type='button' id='btn2' value='添加' data-id='" + centername + "' style='width: 100px;height:30px;margin-top: 20px;margin-left: 120px;'>" +
+                        "</div>";
+                    var infoWindow = new BMap.InfoWindow(sContent, opts);
+                    map.openInfoWindow(infoWindow, point);
+                    var formcenter = "<p>" + centerInfor + "</p>";
+                    $(".center-tail").html("");
+                    $(".center-tail").append(formcenter);
+                })
+            }
+        })
+    }
+
+    //创建center自定义窗口
+    function showtrainWindows(marker,point,trainlist) {
+        var opts = {
+            width : 450,
+            height : 150,
+            /*title : "<strong>景点简介：</strong><br><br>"*/
+        }
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + trainlist.trainName + "</h4>" +
+            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + trainlist.trainId + ".jpg" +">" +
+            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + trainlist.trainInfor + "</p>" +
+            "<input onclick='addcenter()' type='button' id='btn2' value='添加' data-id='" + trainlist.trainName + "' style='width: 100px;height:30px;margin-top: 20px;margin-left: 120px;'>" +
+            "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }
+
+
+    //景点添加进tags里
+    function add(){
+        var sightName = $("#btn1").data("id");
+        /* var val=$('input:radio[name="sight"]:checked').val();*/
+        $("#tagsinputval").tagsinput('add',sightName);
+        /*document.getElementById("tagValue").value=s_val + val + ",";*/
+    }
+
+    //中心点经纬度存放以及中心点添加在tags里
+   /* var longgitudecenter = null;
+    var latitudecenter = null;*/
+    function addcenter(){
+        var centerName = $("#btn2").data("id");
+            if($("#tagsinputval-1").val().length != 0 ){
+                $("#tagsinputval-1").tagsinput('removeAll');
+            }
+            $("#tagsinputval-1").tagsinput('add', centerName);
+            /*if(val == "平江路"){
+                longgitudecenter = 120.640386;
+                latitudecenter = 31.319545;
+            }*/
+            /*document.getElementById("centerValue").value=val;*/
+    }
+
+    var NameInfor = [];
+    //提交景点和中心点选择信息
+   $("#subinfor").click(function(){
+       var centerName = $("#tagsinputval-1").val();
+       var sightName = $("#tagsinputval").val();
+       var sightsingle = sightName.split(",");
+       NameInfor[0] = centerName;
+       for(var i = 0; i < sightsingle.length; i++){
+           NameInfor[i+1] = sightsingle[i];
+       }
+       sessionStorage.Name = NameInfor;
+       window.location.href = "rhconfirm";
+   });
+
+</script>
+<!--百度地图调用js end-->
+
+
+</html>

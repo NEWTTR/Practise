@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UsersMapper">
+    <resultMap id="BaseextResultMap" type="com.example.demo.entity.Users">
+        <id column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="user_name" jdbcType="CHAR" property="userName" />
+        <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+        <result column="user_tel" jdbcType="CHAR" property="userTel" />
+        <result column="user_email" jdbcType="CHAR" property="userEmail" />
+    </resultMap>
+    <select id="selectbyuserName" parameterType="java.lang.String" resultMap="BaseextResultMap">
+    select user_id, user_name, user_password, user_tel, user_email
+    from users
+    where user_name = #{userName,jdbcType=CHAR}
+  </select>
+</mapper>

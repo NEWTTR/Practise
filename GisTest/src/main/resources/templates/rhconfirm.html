@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>确认选择方案</title>
+    <link  rel="stylesheet" href="css/rhconfirm.css" type="text/css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="css/nav.css" type="text/css">
+    <link rel="stylesheet" href="css/tail.css" type="text/css">
+    <script type="text/javascript" src="js/tail.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript" src="js/data.js"></script>-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DTPndtW23KGhuSOeSoeunhBPzoTz4s9W"></script>
+</head>
+
+<body>
+<div class="top">
+
+</div>
+<!--导航栏开始-->
+<div id="menu2" class="menu">
+    <ul>
+        <li><a href="home.html">首 页</a></li>
+        <li><a href="touristspots.html">景点选择</a></li>
+        <li><a href="deeplydiy.html">深度DIY</a></li>
+        <li><a href="#">问题</a></li>
+    </ul>
+    <div class="cls"></div>
+</div>
+<!--导航栏结束-->
+<div class="center">
+    <div class="center-left">
+        <div class="center-left-top">
+            <!--百度地图开始-->
+            <div id="allmap"></div>
+            <!--百度地图结束-->
+        </div>
+        <div class="center-left-bottom">
+            方案具体介绍
+        </div>
+    </div>
+    <div class="center-right">
+        方案列表
+        <button type="submit" style="width:100px; margin-top: 10px;" class="btn btn-primary">确认选择方案</button>
+        <button type="submit" style="width:100px; margin-top: 10px;" class="btn btn-primary" id="deepsub">深度DIY</button>
+    </div>
+</div>
+
+<div class="tail">
+    <!-- footer -->
+    <div class="wave-box">
+        <div class="marquee-box marquee-up" id="marquee-box">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box1">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box2">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="marquee-box" id="marquee-box3">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box4">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box5">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="auto clearfix">
+            <!-- footer主要-->
+            <div class="five-superiority"></div>
+            <div class="footer-floor1">
+                <div class="footer-list">
+                    <ul>
+                        <li class="flist-title">产品与服务</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">云解决方案</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <div class="clear-float"></div>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </div>
+        <div class="footer-floor2">
+            <p>网站信息·1997-2018 版权所有</p>
+            <p>Copyright(C)web.com, All Rights Reserved.</p>
+        </div>
+    </div>
+    <!-- footer end -->
+</div>
+</body>
+
+<!--导航栏js-->
+<script type="text/javascript">
+    //导航栏
+    $(document).ready(function() {
+        $("#menu2 li a").wrapInner( '<span class="out"></span>' );
+        $("#menu2 li a").each(function() {
+            $( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );});
+        $("#menu2 li a").hover(function() {
+            $(".out",	this).stop().animate({'top':	'48px'},	300); // move down - hide
+            $(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+        }, function() {
+            $(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+            $(".over",	this).stop().animate({'top':	'-48px'},	300); // move up - hide
+        });});
+</script>
+
+<!--百度地图调用js-->
+<script type="text/javascript">
+    var map = new BMap.Map("allmap");
+    var NameInfor = sessionStorage.Name;
+    selectlistbyName();
+
+   /* function selectsightbyone() {
+        var sightLongitude = 120.635703;
+        var sightLatitude = 31.330247;
+        var point = new BMap.Point(sightLongitude, sightLatitude);
+        var marker = new BMap.Marker(new BMap.Point(sightLongitude, sightLatitude));
+        map.addOverlay(marker);  //将标注点添加到地图上
+        var thePoint = point;
+        $.ajax({
+            type: "psot",
+            dataType: "json",
+            url: "http://localhost:8080/sightbylonglat?sightLongitude=" + sightLongitude + "&sightLatitude=" + sightLatitude ,
+            success: function (data) {
+                debugger
+                var sight = data.sight;
+                showWindows(marker,thePoint,sight);
+            }
+        })
+    }*/
+
+    function selectlistbyName() {
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                data :{"Names":NameInfor},
+                url: "http://localhost:8080/listbyname",
+                success: function (data) {
+                    var sight = data.sight;
+                    if(data.center.length != 0){
+                        var center = data.center;
+                        var Longitude = center[0].centerLongitude;
+                        sessionStorage.centerLong = center[0].centerLongitude;
+                        sessionStorage.centerLat = center[0].centerLatitude;
+                        var Latitude = center[0].centerLatitude;
+                    }else{
+                        var center = data.train;
+                        var Longitude = center[0].trainLongitude;
+                        sessionStorage.centerLong = center[0].trainLongitude;
+                        sessionStorage.centerLat = center[0].trainLatitude;
+                        var Latitude = center[0].trainLatitude;
+                    }
+                    var myIcon = new BMap.Icon("http://api.map.baidu.com/img/markers.png", new BMap.Size(23, 25), {
+                            offset: new BMap.Size(10, 25), // 指定定位位置
+                            imageOffset: new BMap.Size(0, 0 - 10 * 25) // 设置图片偏移
+                    });
+                    var point = new BMap.Point(Longitude, Latitude);
+                    var marker = new BMap.Marker(new BMap.Point(Longitude, Latitude),{icon:myIcon}); // 创建点
+                    /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                    map.addOverlay(marker);  //将标注点添加到地图上
+                    var thePoint = point;
+                    var NewList = center[0];
+                    showcenterWindows(marker, thePoint, NewList);
+
+                    for (var i = 0; i < sight.length; i++) {
+                        var Longitude = sight[i].sightLongitude;
+                        var Latitude = sight[i].sightLatitude;
+                            var point = new BMap.Point(Longitude, Latitude);
+                            var marker = new BMap.Marker(new BMap.Point(Longitude, Latitude)); // 创建点
+                            /*var marker = new BMap.Marker(points[i]); //将点转化成标注点*/
+                            map.addOverlay(marker);  //将标注点添加到地图上
+                            var thePoint = point;
+                            var NewList = sight[i];
+                            showsightWindows(marker, thePoint, NewList);
+                        }
+                    }
+            })
+    }
+
+    //创建景点自定义窗口
+    function showsightWindows(marker,point,sight) {
+        if(sight.sightLevel != null){sightLevel = sight.sightLevel;}
+        else {sightLevel = "";}
+        var opts = {width : 450, height : 150, /*title : "<strong>景点简介：</strong><br><br>"*/}
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + sight.sightName +"    "+  sightLevel  + "</h4>" +
+            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + sight.sightId + ".jpg" +">" +
+            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + sight.sightBriefInfor + "</p>" + "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }
+
+    //创建中心点自定义窗口
+    function showcenterWindows(marker,point,list) {
+        var opts = {width : 450, height : 150, /*title : "<strong>景点简介：</strong><br><br>"*/}
+        var sContent =
+            "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>" + (list.centerName==undefined?list.trainName:list.centerName) + "</h4>" +
+            "<img style='float:right;margin:4px' width='139' height='104' id='imgDemo' src="+"images/imagesbySightId/" + list.centerId + ".jpg" +">" +
+            "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>" + list.centerInfor + "</p>" +
+            "</div>";
+        var infoWindow = new BMap.InfoWindow(sContent, opts);
+        marker.addEventListener("click",function () {
+            map.openInfoWindow(infoWindow, point);
+        });
+    }
+
+
+    function initialize() {
+        // 百度地图API功能
+        map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+        map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+        map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+        map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+        /* map.addControl(new BMap.MapTypeControl());  */        //添加地图类型控件
+        map.centerAndZoom(new BMap.Point(120.614841,31.332454),14);
+        map.enableScrollWheelZoom(true);
+        // 初始化地图,设置中心点坐标和地图级别。
+    }
+    initialize();
+
+    $("#deepsub").click(function () {
+        window.location.href = "deeplydiy";
+    });
+
+</script>
+<!--百度地图调用js end-->
+</html>

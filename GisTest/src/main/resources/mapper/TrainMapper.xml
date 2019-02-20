@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.TrainMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Train">
+    <id column="train_id" jdbcType="INTEGER" property="trainId" />
+    <result column="train_name_line" jdbcType="CHAR" property="trainNameLine" />
+    <result column="train_name" jdbcType="CHAR" property="trainName" />
+    <result column="train_infor" jdbcType="VARCHAR" property="trainInfor" />
+    <result column="train_longitude" jdbcType="DOUBLE" property="trainLongitude" />
+    <result column="train_latitude" jdbcType="DOUBLE" property="trainLatitude" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from train
+    where train_id = #{trainId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Train">
+    <selectKey keyProperty="trainId" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into train (train_id, train_name_line, train_name, 
+      train_infor, train_longitude, train_latitude
+      )
+    values (#{trainId,jdbcType=INTEGER}, #{trainNameLine,jdbcType=CHAR}, #{trainName,jdbcType=CHAR}, 
+      #{trainInfor,jdbcType=VARCHAR}, #{trainLongitude,jdbcType=DOUBLE}, #{trainLatitude,jdbcType=DOUBLE}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Train">
+    update train
+    set train_name_line = #{trainNameLine,jdbcType=CHAR},
+      train_name = #{trainName,jdbcType=CHAR},
+      train_infor = #{trainInfor,jdbcType=VARCHAR},
+      train_longitude = #{trainLongitude,jdbcType=DOUBLE},
+      train_latitude = #{trainLatitude,jdbcType=DOUBLE}
+    where train_id = #{trainId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select train_id, train_name_line, train_name, train_infor, train_longitude, train_latitude
+    from train
+    where train_id = #{trainId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select train_id, train_name_line, train_name, train_infor, train_longitude, train_latitude
+    from train
+  </select>
+</mapper>

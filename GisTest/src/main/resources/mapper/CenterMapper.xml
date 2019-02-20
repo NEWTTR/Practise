@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CenterMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Center">
+    <id column="center_id" jdbcType="INTEGER" property="centerId" />
+    <result column="center_name" jdbcType="CHAR" property="centerName" />
+    <result column="center_infor" jdbcType="VARCHAR" property="centerInfor" />
+    <result column="center_longitude" jdbcType="DOUBLE" property="centerLongitude" />
+    <result column="center_latitude" jdbcType="DOUBLE" property="centerLatitude" />
+    <result column="center_type" jdbcType="VARCHAR" property="centerType" />
+    <result column="center_clicks" jdbcType="INTEGER" property="centerClicks" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from center
+    where center_id = #{centerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Center">
+    insert into center (center_id, center_name, center_infor, 
+      center_longitude, center_latitude, center_type, 
+      center_clicks)
+    values (#{centerId,jdbcType=INTEGER}, #{centerName,jdbcType=CHAR}, #{centerInfor,jdbcType=VARCHAR}, 
+      #{centerLongitude,jdbcType=DOUBLE}, #{centerLatitude,jdbcType=DOUBLE}, #{centerType,jdbcType=VARCHAR}, 
+      #{centerClicks,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Center">
+    update center
+    set center_name = #{centerName,jdbcType=CHAR},
+      center_infor = #{centerInfor,jdbcType=VARCHAR},
+      center_longitude = #{centerLongitude,jdbcType=DOUBLE},
+      center_latitude = #{centerLatitude,jdbcType=DOUBLE},
+      center_type = #{centerType,jdbcType=VARCHAR},
+      center_clicks = #{centerClicks,jdbcType=INTEGER}
+    where center_id = #{centerId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select center_id, center_name, center_infor, center_longitude, center_latitude, center_type, 
+    center_clicks
+    from center
+    where center_id = #{centerId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select center_id, center_name, center_infor, center_longitude, center_latitude, center_type, 
+    center_clicks
+    from center
+  </select>
+</mapper>

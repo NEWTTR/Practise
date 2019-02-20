@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.CenterMapper">
+    <resultMap id="BaseextResultMap" type="com.example.demo.entity.Center">
+        <id column="center_id" jdbcType="INTEGER" property="centerId" />
+        <result column="center_name" jdbcType="CHAR" property="centerName" />
+        <result column="center_infor" jdbcType="VARCHAR" property="centerInfor" />
+        <result column="center_longitude" jdbcType="DOUBLE" property="centerLongitude" />
+        <result column="center_latitude" jdbcType="DOUBLE" property="centerLatitude" />
+        <result column="center_type" jdbcType="VARCHAR" property="centerType" />
+        <result column="center_clicks" jdbcType="INTEGER" property="centerClicks" />
+    </resultMap>
+
+    <select id="selectbyName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select center_id, center_name, center_infor, center_longitude, center_latitude, center_type,
+    center_clicks
+    from center
+    where center_name = #{centerName,jdbcType=CHAR}
+    </select>
+</mapper>

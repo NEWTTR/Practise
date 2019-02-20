@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>主页</title>
+    <link rel="stylesheet" href="../css/home.css" type="text/css">
+    <link rel="stylesheet" href="../css/nav.css" type="text/css">
+    <link rel="stylesheet" href="../css/tail.css" type="text/css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/bootstrapValidator.min.css" type="text/css">
+    <script type="text/javascript" src="../js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/tail.js"></script>
+</head>
+
+<body>
+
+<div class="top">
+    <ul>
+        <a href=""><li>登录</li></a>
+        <li>|</li>
+        <a href=""><li>注册</li></a>
+    </ul>
+</div>
+<!--导航栏开始-->
+<div id="menu2" class="menu">
+    <ul>
+        <li><a href="home">首 页</a></li>
+        <li><a href="touristspots">景点选择</a></li>
+        <li><a href="deeplydiy">深度DIY</a></li>
+        <li><a href="#">问题</a></li>
+    </ul>
+    <div class="cls"></div>
+</div>
+<!--导航栏结束-->
+
+<div class="center-out">
+    <div class="center-left">
+        背景或者图片
+    </div>
+    <div class="center-middle">
+        <div class="middle-left">
+            <form class="form-horizontal subform" method="post" >
+                <div class="form-group">
+                    <label for="day" style="float: left; margin-top: 7px">出行天数：</label>
+                    <div class="col-lg-5" style="width: 200px; float: left;">
+                        <input type="text" class="form-control" name="day" id="day" placeholder="请填写天数"  autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="price" style="float: left; margin-top: 7px">价格预算：</label>
+                    <div class="col-lg-5" style="width: 150px; float: left;">
+                        <input type="text" class="form-control" name="price1" id="price1" placeholder="$" value="0" autocomplete="off">
+                    </div>
+                    <label for="price" style="float: left; margin-top: 7px;width: 10px;margin-right: -7px;">-</label>
+                    <div class="col-lg-5" style="width: 150px; float: left;">
+                        <input type="text" class="form-control" name="price2" id="price2" placeholder="$"  value="0" autocomplete="off">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="price" style="float: left; margin-top: 7px">出行人数：</label>
+                    <div class="col-lg-5" style="width: 200px; float: left;">
+                        <select class="form-control" style="width: 150px;">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5人以上</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" style="width:100px; margin-top: 10px;" class="btn btn-primary" id="submit">确定</button>
+            </form>
+        </div>
+
+        <div class="middle-right">
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="images/slide1.png" alt="First slide">
+                </div>
+                    <div class="item">
+                        <img src="images/slide2.png" alt="Second slide">
+                    </div>
+                    <div class="item">
+                        <img src="images/slide3.png" alt="Third slide">
+                    </div>
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="middle-tail">
+            <div class="middle-tail-box">定制好的旅游套餐</div>
+            <div class="middle-tail-box">定制好的旅游套餐</div>
+            <div class="middle-tail-box">定制好的旅游套餐</div>
+            <div class="middle-tail-box">定制好的旅游套餐</div>
+            <div class="middle-tail-box">定制好的旅游套餐</div>
+            <div class="middle-tail-box">定制好的旅游套餐</div>
+        </div>
+    </div>
+    <div class="center-right">
+        背景或者图片
+    </div>
+</div>
+
+<div class="tail">
+    <!-- footer -->
+    <div class="wave-box">
+        <div class="marquee-box marquee-up" id="marquee-box">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box1">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box2">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_02.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="marquee-box" id="marquee-box3">
+            <div class="marquee">
+                <div class="wave-list-box" id="wave-list-box4">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+                <div class="wave-list-box" id="wave-list-box5">
+                    <ul>
+                        <li>
+                            <img height="60" alt="波浪" src="images/wave_01.png">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="auto clearfix">
+            <!-- footer主要-->
+            <div class="five-superiority"></div>
+            <div class="footer-floor1">
+                <div class="footer-list">
+                    <ul>
+                        <li class="flist-title">产品与服务</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">云解决方案</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <ul>
+                        <li class="flist-title">技术与支持</li>
+                    </ul>
+                    <div class="clear-float"></div>
+                </div>
+                <div class="clear-float"></div>
+            </div>
+        </div>
+        <div class="footer-floor2">
+            <p>网站信息·1997-2018 版权所有</p>
+            <p>Copyright(C)web.com, All Rights Reserved.</p>
+        </div>
+    </div>
+    <!-- footer end -->
+</div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#menu2 li a").wrapInner( '<span class="out"></span>' );
+        $("#menu2 li a").each(function() {
+            $( '<span class="over">' +  $(this).text() + '</span>' ).appendTo( this );});
+        $("#menu2 li a").hover(function() {
+            $(".out",	this).stop().animate({'top':	'48px'},	300); // move down - hide
+            $(".over",	this).stop().animate({'top':	'0px'},		300); // move down - show
+        }, function() {
+            $(".out",	this).stop().animate({'top':	'0px'},		300); // move up - show
+            $(".over",	this).stop().animate({'top':	'-48px'},	300); // move up - hide
+        });});
+</script>
+
+<script>
+    $(function () {
+        $('.subform').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                day: {
+                    message: '用户名验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '天数不能为空'
+                        },
+                        regexp: {//正则表达式
+                            regexp: /^[1-9]+$/,
+                            message: '必须是不为0的阿拉伯数字'
+                        },
+                    }
+                },
+                /* price1: {
+                     validators: {
+                         notEmpty: {
+                             message: '预算不能为空'
+                         }
+                     }
+                 },*/
+
+            }
+        });
+    });
+</script>
+
+<script>
+
+    $("#submit").click(function () {
+        var bootstrapValidator = $(".subform").data("bootstrapValidator");
+        bootstrapValidator.validate();
+        if(bootstrapValidator.isValid()){
+            sessionStorage.day = $("#day").val();
+            window.location.href = "touristspots";
+        }
+        else{
+            alert("天数没有填写");
+        }
+    })
+</script>
+</html>

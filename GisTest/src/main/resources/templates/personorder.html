@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <title>个人订单生成</title>
+</head>
+<body>
+<div class="infor"></div>
+</body>
+<script>
+    var day = sessionStorage.day;
+    var obj = {}
+    for(var i = 1; i <= day; i++){
+        obj["sight" + i] = sessionStorage["sight"+i];
+        alert(obj["sight" + i]);
+    }
+    displayALL();
+
+    function displayALL() {
+        for(var i = 1; i <= day; i++){
+            var formbegin = "<p>"+"第"+ i  + "天" +"</p>";
+            var formsight = "<p>"+ "景点" +"</p><input value='"+ sessionStorage["sight" + i]+"' />";
+            var formhotel = "<p>"+ "酒店" +"</p><input value='"+ sessionStorage["hotel" + i]+"' />";
+            var formfood = "<p>"+ "餐饮" +"</p><input value='"+ sessionStorage["food" + i]+"' />";
+            formbegin += formsight;
+            formbegin += formhotel;
+            formbegin += formfood;
+            $(".infor").append(formbegin);
+        }
+
+    }
+</script>
+</html>

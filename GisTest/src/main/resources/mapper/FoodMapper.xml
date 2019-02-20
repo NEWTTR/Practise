@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.FoodMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Food">
+    <id column="food_id" jdbcType="INTEGER" property="foodId" />
+    <result column="food_name" jdbcType="CHAR" property="foodName" />
+    <result column="food_infor" jdbcType="VARCHAR" property="foodInfor" />
+    <result column="food_tel" jdbcType="CHAR" property="foodTel" />
+    <result column="food_address" jdbcType="VARCHAR" property="foodAddress" />
+    <result column="food_longitude" jdbcType="DOUBLE" property="foodLongitude" />
+    <result column="food_latitude" jdbcType="DOUBLE" property="foodLatitude" />
+    <result column="food_price" jdbcType="INTEGER" property="foodPrice" />
+    <result column="food_style" jdbcType="CHAR" property="foodStyle" />
+    <result column="food_recommend" jdbcType="VARCHAR" property="foodRecommend" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from food
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Food">
+    <selectKey keyProperty="foodId" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into food (food_id, food_name, food_infor, 
+      food_tel, food_address, food_longitude, 
+      food_latitude, food_price, food_style, 
+      food_recommend)
+    values (#{foodId,jdbcType=INTEGER}, #{foodName,jdbcType=CHAR}, #{foodInfor,jdbcType=VARCHAR}, 
+      #{foodTel,jdbcType=CHAR}, #{foodAddress,jdbcType=VARCHAR}, #{foodLongitude,jdbcType=DOUBLE}, 
+      #{foodLatitude,jdbcType=DOUBLE}, #{foodPrice,jdbcType=INTEGER}, #{foodStyle,jdbcType=CHAR}, 
+      #{foodRecommend,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Food">
+    update food
+    set food_name = #{foodName,jdbcType=CHAR},
+      food_infor = #{foodInfor,jdbcType=VARCHAR},
+      food_tel = #{foodTel,jdbcType=CHAR},
+      food_address = #{foodAddress,jdbcType=VARCHAR},
+      food_longitude = #{foodLongitude,jdbcType=DOUBLE},
+      food_latitude = #{foodLatitude,jdbcType=DOUBLE},
+      food_price = #{foodPrice,jdbcType=INTEGER},
+      food_style = #{foodStyle,jdbcType=CHAR},
+      food_recommend = #{foodRecommend,jdbcType=VARCHAR}
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select food_id, food_name, food_infor, food_tel, food_address, food_longitude, food_latitude, 
+    food_price, food_style, food_recommend
+    from food
+    where food_id = #{foodId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select food_id, food_name, food_infor, food_tel, food_address, food_longitude, food_latitude, 
+    food_price, food_style, food_recommend
+    from food
+  </select>
+</mapper>
